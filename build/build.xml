@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="NAME" default="build" basedir=".">
+ 
+    <target name="build">
+        <phingcall target="composerUpdate"/>
+        <phingcall target="testAll"/>
+    </target>
+ 
+    <target name="composerUpdate">
+        <exec passthru="true"
+            checkreturn="false"
+            command="cd ${project.basedir}; composer update --no-dev --prefer-source --no-interaction"/>
+    </target>
+ 
+    <target name="testAll">
+        <exec passthru="true"
+            checkreturn="false"
+            command="${project.basedir}/vendor/bin/phpunit"/>
+    </target>
+ 
+</project>

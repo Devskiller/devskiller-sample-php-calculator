@@ -1,0 +1,10 @@
+<phpunit bootstrap="tests/bootstrap.php" colors="true" >
+    <logging>
+        <log type="junit" target="build/logs/TEST-junit.xml" logIncompleteSkipped="false" title="Test Results"/>
+    </logging>
+    <testsuites>
+        <testsuite name="tests">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
