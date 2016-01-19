@@ -95,6 +95,6 @@ Test name contains: `[namespace_name]\[Class_name].[method_name]`. In our sample
 - `pathPatterns` - an array of GLOB patterns which should match all files containing verification tests. All files that match defined patterns will be deleted from candidates' projects and will be added to the projects during the verification phase. 
 
 ```json
-"pathPatterns" : ["**src/test/**/verify_pack**"]
+"pathPatterns" : ["**tests/verify_pack**"]
 ```
 
