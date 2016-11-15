@@ -1,5 +1,5 @@
 {
-  "readOnly" : ["phpunit.xml", "build/build.xml"],
+  "readOnlyFiles" : ["phpunit.xml", "build/build.xml"],
   "verification" : {
     "testNamePatterns" : [".*verify_pack.*"],
     "pathPatterns" : ["**tests/verify_pack**"]
