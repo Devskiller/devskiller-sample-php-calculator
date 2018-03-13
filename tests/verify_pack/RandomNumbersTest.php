@@ -2,7 +2,7 @@
 
 namespace verify_pack;
 
-class RandomNumbersTest extends \PHPUnit_Framework_TestCase
+class RandomNumbersTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -29,7 +29,7 @@ class RandomNumbersTest extends \PHPUnit_Framework_TestCase
     {
         // given
         $a = rand(0, 100);
-                $b = rand(0, 100);
+        $b = rand(0, 100);
         $calculator = new \Calculator();
 
         // when
@@ -46,7 +46,7 @@ class RandomNumbersTest extends \PHPUnit_Framework_TestCase
     {
         // given
         $a = rand(0, 100);
-                $b = rand(0, 100);
+        $b = rand(0, 100);
         $calculator = new \Calculator();
 
         // when

@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Bases;
 
-class CalculatorTest extends \PHPUnit_Framework_TestCase
+class CalculatorTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -38,7 +40,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-	public function shouldMultiplyTwoNumbers() {
+    public function shouldMultiplyTwoNumbers() {
         // given
         $calculator = new \Calculator();
 
@@ -51,7 +53,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-	public function shouldDivideTwoNumbers() {
+    public function shouldDivideTwoNumbers() {
         // given
         $calculator = new \Calculator();
 

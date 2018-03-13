@@ -2,7 +2,7 @@
 
 namespace verify_pack;
 
-class IllegalArgumentsTest extends \PHPUnit_Framework_TestCase
+class IllegalArgumentsTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
