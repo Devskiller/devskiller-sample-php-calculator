@@ -1,75 +1,68 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace verify_pack;
 
-class RandomNumbersTest extends \PHPUnit\Framework\TestCase
+use Calculator;
+use PHPUnit\Framework\TestCase;
+
+class RandomNumbersTest extends TestCase
 {
+    private Calculator $calculator;
 
-    /**
-     * @test
-     */
-    public function shouldAddTwoNumbers()
+    protected function setUp(): void
     {
-        // given
-        $a = rand(0, 100);
-        $b = rand(0, 100);
-        $calculator = new \Calculator();
-
-        // when
-        $result = $calculator->add($a,$b);
-
-        // then
-        $this->assertEquals($a+$b, $result);
+        $this->calculator = new Calculator();
     }
 
-    /**
-     * @test
-     */
-    public function shouldSubtractTwoNumbers()
+    /** @dataProvider randomDataProvider */
+    public function testShouldAddTwoNumbers(int $firstParameter, int $secondParameter): void
     {
-        // given
-        $a = rand(0, 100);
-        $b = rand(0, 100);
-        $calculator = new \Calculator();
-
         // when
-        $result = $calculator->subtract($a, $b);
+        $result = $this->calculator->add($firstParameter, $secondParameter);
 
         // then
-        $this->assertEquals($a-$b, $result);
+        $this->assertEquals($firstParameter + $secondParameter, $result);
     }
 
-    /**
-     * @test
-     */
-    public function shouldMultiplyTwoNumbers()
+    /** @dataProvider randomDataProvider */
+    public function testShouldSubtractTwoNumbers(int $firstParameter, int $secondParameter): void
     {
-        // given
-        $a = rand(0, 100);
-        $b = rand(0, 100);
-        $calculator = new \Calculator();
-
         // when
-        $result = $calculator->multiply($a, $b);
+        $result = $this->calculator->subtract($firstParameter, $secondParameter);
 
         // then
-        $this->assertEquals($a*$b, $result);
+        $this->assertEquals($firstParameter - $secondParameter, $result);
     }
 
-    /**
-     * @test
-     */
-    public function shouldDivideTwoNumbers()
+    /** @dataProvider randomDataProvider */
+    public function testShouldMultiplyTwoNumbers(int $firstParameter, int $secondParameter): void
     {
-        // given
-        $a = rand(0, 100);
-        $b = rand(1, 100);
-        $calculator = new \Calculator();
-
         // when
-        $result = $calculator->divide($a, $b);
+        $result = $this->calculator->multiply($firstParameter, $secondParameter);
 
         // then
-        $this->assertEquals(round($a/$b), $result);
+        $this->assertEquals($firstParameter * $secondParameter, $result);
+    }
+
+    /** @dataProvider randomDataProvider */
+    public function testShouldDivideTwoNumbers(int $firstParameter, int $secondParameter): void
+    {
+        // when
+        $result = $this->calculator->divide($firstParameter, $secondParameter);
+
+        // then
+        $this->assertEquals((float) $firstParameter / $secondParameter, $result);
+    }
+
+    // given
+    public function randomDataProvider(): array
+    {
+        return [
+            ['firstParameter' => 10, 'secondParameter' => 15],
+            ['firstParameter' => 0, 'secondParameter' => 1],
+            ['firstParameter' => 0, 'secondParameter' => -5],
+            ['firstParameter' => -5, 'secondParameter' => 5],
+            ['firstParameter' => 100, 'secondParameter' => 1],
+        ];
     }
 }

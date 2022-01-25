@@ -1,24 +1,38 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace verify_pack;
 
-class IllegalArgumentsTest extends \PHPUnit\Framework\TestCase
+use Calculator;
+use PHPUnit\Framework\TestCase;
+
+class IllegalArgumentsTest extends TestCase
 {
+    private Calculator $calculator;
 
-    /**
-     * @test
-     * @expectedException InvalidArgumentException
-     */
-    public function shouldThrowExceptionForDivisionByZero()
+    protected function setUp(): void
     {
-        // given
-        $calculator = new \Calculator();
-
-        // when
-        $calculator->divide(10,0);
-
-        // then
-        $this->fail('exception should be thrown');
+        $this->calculator = new Calculator();
     }
 
+    /** @dataProvider invalidDataProvider */
+    public function testShouldThrowExceptionForDivisionByZero(int $firstParameter, int $secondParameter): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        // when
+        $this->calculator->divide($firstParameter, $secondParameter);
+
+        // then
+        $this->fail('Division by zero is forbidden');
+    }
+
+    // given
+    public function invalidDataProvider(): array
+    {
+        return [
+            ['firstParameter' => 10, 'secondParameter' => 0],
+            ['firstParameter' => 0, 'secondParameter' => 0],
+            ['firstParameter' => -10, 'secondParameter' => 0],
+        ];
+    }
 }
